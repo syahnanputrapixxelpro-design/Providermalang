@@ -7,6 +7,8 @@
     <title>ProviderMalang - Outbound & Adventure</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #00F0FF;
@@ -16,6 +18,8 @@
             --text-gray: #6B7280;
             --bg-light: #F9FAFB;
             --white: #FFFFFF;
+            --footer-bg: #1A1A1A;
+            --footer-text: #D1D5DB;
         }
 
         * {
@@ -25,10 +29,22 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
+        html {
+            background-color: var(--bg-light);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
         body {
             background-color: var(--bg-light);
             color: var(--text-dark);
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            padding-top: 85px;
+            /* Offset for fixed header */
         }
 
         a {
@@ -49,6 +65,16 @@
         }
 
         /* Header */
+        .header-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--bg-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
         header {
             display: flex;
             justify-content: space-between;
@@ -432,108 +458,175 @@
             grid-row: 1 / 3;
         }
 
-        /* Testimonial & CTA */
-        .testimonial {
-            background: var(--secondary);
-            color: var(--white);
-            padding: 100px 0;
-            text-align: center;
-            border-radius: 0;
-            margin-top: 60px;
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0 40px;
         }
 
-        .quote-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 24px;
-            font-family: serif;
-        }
-
-        .testimonial h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            line-height: 1.4;
-        }
-
-        .author {
+        .cta-box {
+            background: linear-gradient(rgba(30, 59, 51, 0.85), rgba(30, 59, 51, 0.85)), url('assets/areaforest.webp') center/cover;
+            border-radius: 20px;
+            padding: 60px 80px;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 60px;
+            color: var(--white);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .author img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary);
+        .cta-content {
+            max-width: 650px;
         }
 
-        .author h5 {
+        .cta-content h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .cta-content p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .cta-box .btn-primary {
+            padding: 16px 40px;
             font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .author p {
-            color: var(--primary);
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .subscribe {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .subscribe input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 12px 20px;
-            color: white;
-            outline: none;
-        }
-
-        .subscribe input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .subscribe .btn {
-            border-radius: 6px;
+            border-radius: 30px;
+            white-space: nowrap;
         }
 
         /* Footer */
         footer {
-            padding: 40px 0;
-            background: var(--white);
-            border-top: 1px solid #E5E7EB;
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 80px 0 40px;
+            margin-top: 60px;
+            position: relative;
         }
 
-        .footer-inner {
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo {
+            color: white;
+            margin-bottom: 24px;
+            font-size: 1.6rem;
+        }
+
+        .footer-brand .logo-icon {
+            background: #FFD233;
+            /* Highlight yellow icon specifically for footer logo */
+        }
+
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            max-width: 350px;
+        }
+
+        .social-icons {
             display: flex;
-            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s;
         }
 
-        .footer-links {
+        .social-icons a:hover {
+            background: var(--primary);
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul li a {
+            display: inline-block;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+
+        .contact-info li {
             display: flex;
-            gap: 24px;
-            font-size: 0.85rem;
-            color: var(--text-gray);
+            gap: 12px;
+            margin-bottom: 20px;
+            align-items: flex-start;
         }
 
-        .copyright {
+        .contact-info i {
+            color: #FFD233;
+            margin-top: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            text-align: center;
             font-size: 0.85rem;
-            color: var(--text-gray);
+            color: #9CA3AF;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .burger-menu span {
+            width: 30px;
+            height: 3px;
+            background: var(--text-dark);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .d-mobile-only {
+            display: none;
         }
 
         /* Mobile Responsive */
@@ -561,11 +654,13 @@
                 left: 50%;
                 transform: translateX(-50%);
                 bottom: 20px;
+                width: 90%;
             }
 
             .section-header-top {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                text-align: center;
                 gap: 16px;
             }
 
@@ -586,92 +681,321 @@
             .feature-grid {
                 height: 400px;
             }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
 
-            .nav-links,
-            header .btn {
+            header>.d-desktop-only {
                 display: none;
             }
 
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 16px 24px 24px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+                gap: 16px;
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 8px 0;
+                border-bottom: 1px solid #E5E7EB;
+            }
+
+            .d-mobile-only {
+                display: block !important;
+                width: 100%;
+                margin-top: 10px;
+                text-align: center;
+            }
+
+            /* Proportional Typography & Layout Adjustments */
+            .hero {
+                padding: 24px 0;
+                gap: 32px;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                margin-bottom: 16px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 24px;
+                padding: 0 8px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+                margin-bottom: 40px;
+                padding: 0 16px;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .stats {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 24px;
+            }
+
+            .stat-item {
+                flex: 1 1 40%;
+            }
+
+            .stat-item h3 {
+                font-size: 1.5rem;
+            }
+
+            .hero-image img {
+                height: 400px;
+            }
+
+            .floating-card {
+                padding: 16px;
+                max-width: 250px;
+                bottom: 16px;
+            }
+
+            .packages {
+                padding: 40px 0;
+            }
+
+            .section-header {
+                margin-bottom: 24px;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                font-size: 0.95rem;
             }
 
             .grid-3 {
                 grid-template-columns: 1fr;
-            }
-
-            .stats {
-                flex-direction: column;
                 gap: 24px;
             }
 
-            .testimonial h2 {
-                font-size: 1.5rem;
+            .card-img-wrapper {
+                height: 200px;
             }
 
-            .footer-inner {
+            .features {
+                padding: 40px 0;
+                gap: 32px;
+            }
+
+            .features h2 {
+                font-size: 1.8rem;
+                margin-bottom: 16px;
+            }
+
+            .features>p {
+                font-size: 0.95rem;
+                margin-bottom: 24px;
+            }
+
+            .feature-list {
+                gap: 20px;
+            }
+
+            .feature-item {
+                align-items: flex-start;
+            }
+
+            .feature-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                border-radius: 10px;
+            }
+
+            .feature-text h4 {
+                font-size: 1rem;
+            }
+
+            .feature-text p {
+                font-size: 0.85rem;
+            }
+
+            .feature-grid {
+                height: 350px;
+            }
+
+            /* CTA Section Responsive */
+            .cta-section {
+                padding: 40px 16px;
+                margin-top: 20px;
+            }
+
+            .cta-box {
                 flex-direction: column;
-                gap: 24px;
                 text-align: center;
+                padding: 40px 24px;
+                gap: 32px;
+                border-radius: 16px;
             }
+
+            .cta-content h2 {
+                font-size: 1.75rem;
+                margin-bottom: 12px;
+            }
+
+            .cta-content p {
+                font-size: 0.95rem;
+            }
+
+            .cta-box .btn-primary {
+                width: 100%;
+                border-radius: 12px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Floating buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 99;
+        }
+
+        .btn-float {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .btn-float:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .btn-up {
+            background: var(--secondary);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .btn-up.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .btn-wa {
+            background: #25D366;
         }
     </style>
 </head>
 
 <body>
+    <!-- Header Wrapper -->
+    <div class="header-wrapper">
+        <div class="container">
+            <!-- Header -->
+            <header>
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    ProviderMalang
+                </div>
+                <nav class="nav-links">
+                    <a href="#">Beranda</a>
+                    <a href="blog.html">Blog</a>
+                    <button class="btn btn-primary d-mobile-only">Pesan Sekarang</button>
+                </nav>
+                <button class="btn btn-primary d-desktop-only">Pesan Sekarang</button>
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </header>
+        </div>
+    </div>
 
+    <!-- Main Content Container -->
     <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="logo">
-                <div class="logo-icon"></div>
-                ProviderMalang
-            </div>
-            <nav class="nav-links">
-                <a href="#">Home</a>
-                <a href="blog.html">Blog</a>
-            </nav>
-            <button class="btn btn-primary">Book Now</button>
-        </header>
 
         <!-- Hero -->
         <section class="hero">
             <div class="hero-content">
-                <div class="hero-tag">✨ #1 Adventure Provider in Batu</div>
-                <h1>Experience the <br><span>Ultimate</span> Adventure <br>in Malang</h1>
-                <p>Professional outbound services for corporate gatherings, family fun, and team building. Rafting,
-                    Paintball, Offroad and more!</p>
+                <div class="hero-tag">✨ Provider Petualangan #1 di Batu</div>
+                <h1>Rasakan Petualangan <br><span>Terbaik</span> <br>di Malang</h1>
+                <p>Layanan outbound profesional untuk gathering perusahaan, rekreasi keluarga, dan team building.
+                    Rafting,
+                    Paintball, Offroad, dan banyak lagi!</p>
                 <div class="hero-actions">
-                    <button class="btn btn-primary">Explore Packages</button>
-                    <button class="btn btn-outline">Watch Video</button>
+                    <button class="btn btn-primary">Jelajahi Paket</button>
+                    <button class="btn btn-outline">Tonton Video</button>
                 </div>
                 <div class="stats">
                     <div class="stat-item">
                         <h3>5k+</h3>
-                        <p>Happy Clients</p>
+                        <p>Klien Puas</p>
                     </div>
                     <div class="stat-item">
                         <h3>50+</h3>
-                        <p>Expert Guides</p>
+                        <p>Pemandu Ahli</p>
                     </div>
                     <div class="stat-item">
                         <h3>100%</h3>
-                        <p>Safety Record</p>
+                        <p>Rekor Keselamatan</p>
                     </div>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80"
-                    alt="Rafting Adventure">
+                <img src="assets/Hero.webp" alt="Rafting Adventure">
                 <div class="floating-card">
                     <div class="floating-card-title">
                         <div class="floating-card-icon">★</div>
-                        Top Rated Activity
+                        Aktivitas Terpopuler
                     </div>
-                    <p>"The rafting experience was unforgettable! Highly recommended for team building."</p>
+                    <p>"Pengalaman rafting yang tak terlupakan! Sangat direkomendasikan untuk team building."</p>
                 </div>
             </div>
         </section>
@@ -680,68 +1004,61 @@
         <section class="packages">
             <div class="section-header-top">
                 <div class="section-header">
-                    <h2>Popular Outbound Packages</h2>
-                    <p>Choose your adventure. We have curated the best experiences for adrenaline junkies and nature
-                        lovers alike.</p>
+                    <h2>Paket Outbound Populer</h2>
+                    <p>Pilih petualangan Anda. Kami telah menyusun pengalaman terbaik untuk pecandu adrenalin dan
+                        pecinta alam.</p>
                 </div>
-                <a href="#" class="view-all">View all packages →</a>
+                <a href="#" class="view-all">Lihat semua paket →</a>
             </div>
 
             <div class="grid-3">
                 <!-- Package 1 -->
                 <div class="card">
                     <div class="card-img-wrapper">
-                        <span class="badge">MOST POPULAR</span>
-                        <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=600&q=80"
-                            alt="Rafting">
+                        <span class="badge">PALING POPULER</span>
+                        <img src="assets/5.webp" alt="Rafting">
                     </div>
                     <div class="card-header">
-                        <div class="card-title">Whitewater Rafting</div>
+                        <div class="card-title">Arung Jeram</div>
                         <div class="card-rating">★ 4.9</div>
                     </div>
-                    <p class="card-desc">Adrenaline pumping action on the Brantas river with professional guides.</p>
+                    <p class="card-desc">Aksi memacu adrenalin di sungai Brantas dengan pemandu profesional.</p>
                     <div class="card-meta">
-                        <span>⏱ 3 Hours</span>
-                        <span>👤 Min 4 Pax</span>
+                        <span>⏱ 3 Jam</span>
+                        <span>👤 Min 4 Orang</span>
                     </div>
-                    <button class="btn btn-outline btn-full">View Details</button>
                 </div>
 
                 <!-- Package 2 -->
                 <div class="card">
                     <div class="card-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?auto=format&fit=crop&w=600&q=80"
-                            alt="Paintball">
+                        <img src="assets/TimBattle.webp" alt="Paintball">
                     </div>
                     <div class="card-header">
-                        <div class="card-title">Paintball Arena</div>
+                        <div class="card-title">Arena Paintball</div>
                         <div class="card-rating">★ 4.7</div>
                     </div>
-                    <p class="card-desc">Strategic team battles in a natural forest setting. Perfect for team bonding.
-                    </p>
+                    <p class="card-desc">Pertempuran tim strategis di latar hutan alami. Sempurna untuk bonding tim.</p>
                     <div class="card-meta">
-                        <span>⏱ 2 Hours</span>
-                        <span>👤 Min 10 Pax</span>
+                        <span>⏱ 2 Jam</span>
+                        <span>👤 Min 10 Orang</span>
                     </div>
-                    <button class="btn btn-outline btn-full">View Details</button>
                 </div>
 
                 <!-- Package 3 -->
                 <div class="card">
                     <div class="card-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1533560904424-a0c61dc306fc?auto=format&fit=crop&w=600&q=80"
-                            alt="Jeep Offroad">
+                        <img src="assets/6.webp" alt="Jeep Offroad">
                     </div>
                     <div class="card-header">
                         <div class="card-title">Jeep Offroad</div>
                         <div class="card-rating">★ 4.8</div>
                     </div>
-                    <p class="card-desc">Explore the rugged terrain of Malang's mountains in a classic 4x4 Jeep.</p>
+                    <p class="card-desc">Jelajahi medan pegunungan Malang yang menantang dengan Jeep 4x4 klasik.</p>
                     <div class="card-meta">
-                        <span>⏱ 4 Hours</span>
-                        <span>👤 Min 3 Pax</span>
+                        <span>⏱ 4 Jam</span>
+                        <span>👤 Min 3 Orang</span>
                     </div>
-                    <button class="btn btn-outline btn-full">View Details</button>
                 </div>
             </div>
         </section>
@@ -749,89 +1066,154 @@
         <!-- Features Section -->
         <section class="features">
             <div>
-                <h2>Why Choose Us for Your Next Adventure?</h2>
-                <p>We provide the best facilities and experienced guides for your safety and enjoyment. Our commitment
-                    to excellence ensures every trip is memorable.</p>
+                <h2>Mengapa Memilih Kami untuk Petualangan Anda Selanjutnya?</h2>
+                <p>Kami menyediakan fasilitas terbaik dan pemandu berpengalaman untuk keselamatan dan kenyamanan Anda.
+                    Komitmen kami pada keunggulan memastikan setiap perjalanan berkesan.</p>
 
                 <div class="feature-list">
                     <div class="feature-item">
                         <div class="feature-icon">🏅</div>
                         <div class="feature-text">
-                            <h4>Experienced Guides</h4>
-                            <p>Certified instructors with years of field experience.</p>
+                            <h4>Pemandu Berpengalaman</h4>
+                            <p>Instruktur bersertifikat dengan pengalaman bertahun-tahun di lapangan.</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">🛡️</div>
                         <div class="feature-text">
-                            <h4>Safety First</h4>
-                            <p>Top-tier equipment and rigorous safety protocols.</p>
+                            <h4>Keselamatan Terutama</h4>
+                            <p>Peralatan terbaik dan protokol keselamatan yang ketat.</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <div class="feature-icon">⚙️</div>
                         <div class="feature-text">
-                            <h4>Customizable Packages</h4>
-                            <p>Tailored activities to fit your group's specific needs.</p>
+                            <h4>Paket yang Dapat Disesuaikan</h4>
+                            <p>Aktivitas yang disesuaikan untuk memenuhi kebutuhan spesifik grup Anda.</p>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-primary">Learn More About Us</button>
             </div>
 
             <div class="feature-grid">
-                <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=400&q=80"
-                    alt="Team Building" class="main-img">
-                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=400&q=80"
-                    alt="Nature">
-                <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=400&q=80"
-                    alt="Hiking">
+                <img src="assets/7.webp" alt="Team Building" class="main-img">
+                <img src="assets/areaspeedball.webp" alt="Nature">
+                <img src="assets/areaurban.webp" alt="Hiking">
             </div>
         </section>
     </div>
 
-    <!-- Testimonial Section -->
-    <section class="testimonial">
-        <div class="container">
-            <div class="quote-icon">❞</div>
-            <h2>"The most fun our team has had in years! The guides were professional and the location in Malang was
-                breathtaking."</h2>
-            <div class="author">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80"
-                    alt="Budi Santoso">
-                <div>
-                    <h5>Budi Santoso</h5>
-                    <p>HR Manager, Tech Corp</p>
-                </div>
+    <!-- CTA Section -->
+    <section class="cta-section container">
+        <div class="cta-box">
+            <div class="cta-content">
+                <h2>Siap Memulai Petualangan Anda?</h2>
+                <p>Pesan penawaran Anda sekarang dan dapatkan diskon khusus 10% untuk pemesanan grup lebih dari 20
+                    orang.</p>
             </div>
-
-            <div class="subscribe">
-                <input type="email" placeholder="Enter your email for offers">
-                <button class="btn btn-primary">Subscribe</button>
-            </div>
+            <button class="btn btn-primary" style="margin-top: 0;">Pesan Sekarang</button>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-inner">
-                <div class="logo">
-                    <div class="logo-icon"></div>
-                    ProviderMalang
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon"></div>
+                        ProviderMalang
+                    </div>
+                    <p>Mitra utama Anda untuk gathering profesional dan aktivitas luar ruangan di Kota Malang dan Batu.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Support</a>
+
+                <div class="footer-col">
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Layanan Kami</a></li>
+                        <li><a href="#">Paket Harga</a></li>
+                        <li><a href="#">Galeri</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
                 </div>
-                <div class="copyright">
-                    © 2026 ProviderMalang. All rights reserved.
+
+                <div class="footer-col">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="#">Arung Jeram Batu</a></li>
+                        <li><a href="#">Perang Paintball</a></li>
+                        <li><a href="#">Tur Jeep Offroad</a></li>
+                        <li><a href="#">Pelatihan Outbound</a></li>
+                        <li><a href="#">Gathering Keluarga</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Hubungi Kami</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jl. Raya Ngantang, No. 12 Batu, Jawa Timur, Indonesia</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+62 812-3456-7890</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@providermalang.com</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
+            <div class="footer-bottom">
+                &copy; 2026 ProviderMalang. Hak Cipta Dilindungi.
+            </div>
+        </div>
+        <!-- Floating Buttons -->
+        <div class="floating-buttons">
+            <a href="#" class="btn-float btn-up" id="btnUp" title="Kembali ke Atas"><i class="fas fa-arrow-up"></i></a>
+            <a href="https://wa.me/6282211221909" target="_blank" class="btn-float btn-wa" title="WhatsApp Kami"><i
+                    class="fab fa-whatsapp"></i></a>
         </div>
     </footer>
 
+    <script>
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (burgerMenu && navLinks) {
+            burgerMenu.addEventListener('click', () => {
+                burgerMenu.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // Scroll to Top Logic
+        const btnUp = document.getElementById('btnUp');
+        if (btnUp) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    btnUp.classList.add('show');
+                } else {
+                    btnUp.classList.remove('show');
+                }
+            });
+            btnUp.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
 </body>
 
 </html>
